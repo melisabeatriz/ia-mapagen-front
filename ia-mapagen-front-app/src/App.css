@@ -1,0 +1,97 @@
+.App {
+  display: flex;
+  justify-content: center;
+  font-family: "Roboto";
+}
+/* Home screen */
+
+.home-title {
+  font-family: "Roboto Slab", serif;
+  font-weight: 500;
+  font-size: 5rem;
+  margin: 0;
+}
+
+.home-subtitle {
+  margin-top: 200px;
+  margin-bottom: 0;
+}
+
+.home-description {
+  font-style: italic;
+  width: 400px;
+  margin-bottom: 100px;
+}
+
+.home-logo {
+  height: 40px;
+}
+
+.home-icons-container {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  /* display: flex; */
+}
+
+.home-background {
+  padding: 15px 15px 15px 100px;
+  background: linear-gradient(-45deg, white, rgba(162, 170, 216, 0.486));
+  height: 100vh;
+  width: 100%;
+}
+
+/* Slider component */
+.slider-container {
+  display: flex;
+  align-items: center;
+}
+
+.slider-container > p {
+  margin: 0;
+}
+
+.slider-container > .MuiSlider-root {
+  margin: 0 10px;
+}
+
+/* Video processor */
+.video-processor-container {
+  width: 50%;
+}
+
+fieldset {
+  margin-bottom: 20px;
+}
+
+/* Backdrop */
+.backdrop {
+  z-index: 100 !important;
+  color: #fff;
+}
+
+.backdrop-card {
+  width: 70%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.backdrop-card > .MuiLinearProgress-root {
+  width: 100%;
+  margin-bottom: 15px;
+  margin-top: 50px;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 150px;
+  width: 100%;
+}
+
+/* Abstract classnames */
+.add-margin-right {
+  margin-right: 10px !important;
+}
