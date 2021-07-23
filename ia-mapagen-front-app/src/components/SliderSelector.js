@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Typography, Slider, Tooltip, Grid } from "@material-ui/core";
+import { Typography, Slider, Button, Grid, Modal } from "@material-ui/core";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 
 const SliderSelector = ({
@@ -9,6 +9,7 @@ const SliderSelector = ({
   isPercentage = false,
 }) => {
   const handleChange = (event, newValue) => values.setter(newValue);
+  const [tipOpen, setTipOpen] = useState(false);
 
   return (
     <>
@@ -19,10 +20,14 @@ const SliderSelector = ({
         alignItems="center"
       >
         <Typography variant="subtitle1">{label}</Typography>
-
-        <Tooltip title={explanation} arrow placement="top-end">
+        <Button onClick={() => setTipOpen(true)}>
           <HelpOutlineIcon />
-        </Tooltip>
+        </Button>
+        {tipOpen && (
+          <Typography>
+            <i>{explanation}</i>
+          </Typography>
+        )}
       </Grid>
       <div className="slider-container">
         <p>{`${values.min}${isPercentage ? "%" : ""}`}</p>
