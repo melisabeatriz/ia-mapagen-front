@@ -11,6 +11,11 @@ const ProcessingProgress = ({ isOpen, close }) => {
           <p>Tiempo transcurrido: 00:10:05</p>
           <p>Tiempo restante aproximado: 04:20</p>
         </div>
+
+        <div>
+          <ProcessingVideo  />
+        </div>
+
         <Button variant="outlined" onClick={close}>
           Detener
         </Button>
