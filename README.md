@@ -6,3 +6,5 @@ Para introducir cambios, crear una rama a partir de master, con el nombre de los
 
 
 Nico:
+
+Para correr el server flask ejecutar y el front end ejecutar dos consolas, en una correr "npm run start" y en la otra "npm run start-api"
