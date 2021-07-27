@@ -1,5 +1,7 @@
 import React from "react";
 import { Backdrop, LinearProgress, Paper, Button } from "@material-ui/core";
+//import ProgressBar from "../components/ProgressBar";
+import ProcessingVideo from "../processingVideo"
 
 const ProcessingProgress = ({ isOpen, close }) => {
   return (

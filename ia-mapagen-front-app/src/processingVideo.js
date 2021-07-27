@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ProgressBar from "./components/ProgressBar";
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import * as data from "./salidaPython.json";
+import {  LinearProgress, Button } from "@material-ui/core";
 
 class processingVideo extends Component {
 state={
@@ -37,16 +38,20 @@ simular=async()=>{
 
  render(){
   return (
+    <div>
     <div className="App" margin-bottom="20px">
-      <div className="btn btn-success" onClick={()=>this.simular()}>Simular </div>
-      
+        <Button variant="outlined" onClick={()=>this.simular()}>
+          Simular
+        </Button>
+        </div>  
       <div className="progressBar">
       {
-      <ProgressBar 
+      <ProgressBar variant="determinate" 
         porcentaje={this.state.porcentaje}
         texto={"Procesando.."}        
       />
       }
+      
       </div>
       
     </div>
@@ -54,9 +59,3 @@ simular=async()=>{
 }
 }
 export default processingVideo;
-
-/*
-const a = data.archivosRestantes;
-console.log(a); // output "testing"
-const p = data.porcentaje;
-console.log(p); // output "testing" */
