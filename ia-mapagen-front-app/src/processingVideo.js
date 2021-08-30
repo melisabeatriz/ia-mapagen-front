@@ -27,6 +27,11 @@ simular=async()=>{
       .then((data) => {
         self.setState({ porcentaje: data.porcentaje })
       })
+//Ejecturar script python
+      fetch('/runHeatMap').then(res => res.json())
+      .then((data) => {
+        self.setState({ porcentaje: data.porcentaje })
+      })      
 
       console.log(self.state.porcentaje)
       console.log(i)

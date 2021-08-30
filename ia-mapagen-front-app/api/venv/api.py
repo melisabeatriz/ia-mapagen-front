@@ -4,10 +4,11 @@ from flask import Flask
 import os
 import time
 import json
+import subprocess
+import sys
 
 app = Flask(__name__)
 @app.route('/actualizarPorcentaje')
-
 def actualizarPorcentaje():
     json_object = {}
     file = open("../salidaPython.json", "r+")
@@ -24,6 +25,18 @@ def actualizarPorcentaje():
     
     return {'porcentaje': json_object["porcentaje"] }
 
+@app.route('/runHeatMap')
+def runHeatMap(): 
+    #file = open('C:\Proyecto\HeatMap UNLa\HeatMap_UNLa_Abremate_v2.2_sin_parametros.py', 'r').read()
+    #return exec(file)
+    #["python", "programa.py"] subprocess.run('python C:\Proyecto\HeatMap UNLa\HeatMap_UNLa_Abremate_v2.2_sin_parametros.py', shell=True)
+    #p = subprocess.call('python "C:\Proyecto\HeatMap UNLa\HeatMap_UNLa_Abremate_v2.2_sin_parametros.py"', shell=True)
+    
+    
+    subprocess.run('C:\Proyecto\HeatMap UNLa\HeatMap_UNLa_Abremate_v2.2_sin_parametros.py', shell=True)
+    subprocess.run('echo %pythonPATH%', shell=True)
+    return {'proceso': 'iniciado'}
+
     
 @app.route('/resetPorcentaje')
 def resetPorcentaje():
@@ -38,3 +51,6 @@ def resetPorcentaje():
     
     return {'porcentaje': json_object["porcentaje"] }
 
+
+
+    
