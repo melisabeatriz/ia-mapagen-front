@@ -7,6 +7,9 @@ import json
 import subprocess
 import sys
 
+global currentProcess
+
+
 app = Flask(__name__)
 @app.route('/actualizarPorcentaje')
 def actualizarPorcentaje():
@@ -32,10 +35,14 @@ def runHeatMap():
     #["python", "programa.py"] subprocess.run('python C:\Proyecto\HeatMap UNLa\HeatMap_UNLa_Abremate_v2.2_sin_parametros.py', shell=True)
     #p = subprocess.call('python "C:\Proyecto\HeatMap UNLa\HeatMap_UNLa_Abremate_v2.2_sin_parametros.py"', shell=True)
     
-    
-    subprocess.run('C:\Proyecto\HeatMap UNLa\HeatMap_UNLa_Abremate_v2.2_sin_parametros.py', shell=True)
+       
+    # FUNCIONA p = subprocess.run('"C:\Proyecto\HeatMap UNLa\HeatMap_UNLa_Abremate_v2.2_sin_parametros.py" parametro', shell=True)
+    p = subprocess.Popen(['"C:\Proyecto\HeatMap UNLa\HeatMap_UNLa_Abremate_v2.2_sin_parametros.py" parametro'],shell=True,
+             stdin=None, stdout=None, stderr=None, close_fds=True)
     subprocess.run('echo %pythonPATH%', shell=True)
-    return {'proceso': 'iniciado'}
+    pid = p.pid
+    print( p.pid)
+    return {'proceso': pid}
 
     
 @app.route('/resetPorcentaje')
@@ -51,6 +58,21 @@ def resetPorcentaje():
     
     return {'porcentaje': json_object["porcentaje"] }
 
+@app.route('/stopHeatMap')
+def stopHeatMap():
+    json_object = {}     
+    print(pidProcess)
+    return {'status': json_object["200"] }
 
+@app.route('/runHeatMapWithParameters')
+def runHeatMapWithParameters():
+    json_object = {}     
+    return {'status': json_object["200"] }
+    
+@app.route('/showHeatMap')
+def showHeatMap():
+    json_object = {}     
+    return {'status': json_object["200"] }
+    
 
     
