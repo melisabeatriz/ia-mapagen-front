@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from flask import Flask
-import os
+from flask import Flask, request
+import os, signal
 import time
 import json
 import subprocess
 import sys
 
 global currentProcess
-
 
 app = Flask(__name__)
 @app.route('/actualizarPorcentaje')
@@ -28,6 +27,8 @@ def actualizarPorcentaje():
     
     return {'porcentaje': json_object["porcentaje"] }
 
+
+#para invocar usar http://localhost:5000/runHeatMap?a=Hola&b=Chau&c=HastaLuego
 @app.route('/runHeatMap')
 def runHeatMap(): 
     #file = open('C:\Proyecto\HeatMap UNLa\HeatMap_UNLa_Abremate_v2.2_sin_parametros.py', 'r').read()
@@ -36,10 +37,15 @@ def runHeatMap():
     #p = subprocess.call('python "C:\Proyecto\HeatMap UNLa\HeatMap_UNLa_Abremate_v2.2_sin_parametros.py"', shell=True)
     
        
-    # FUNCIONA p = subprocess.run('"C:\Proyecto\HeatMap UNLa\HeatMap_UNLa_Abremate_v2.2_sin_parametros.py" parametro', shell=True)
-    p = subprocess.Popen(['"C:\Proyecto\HeatMap UNLa\HeatMap_UNLa_Abremate_v2.2_sin_parametros.py" parametro'],shell=True,
-             stdin=None, stdout=None, stderr=None, close_fds=True)
-    subprocess.run('echo %pythonPATH%', shell=True)
+    #p = subprocess.run('"C:\Proyecto\HeatMap UNLa\HeatMap_UNLa_Abremate_v2.2_sin_parametros.py" parametro', shell=True)
+    parametro1 = request.args['a']
+    parametro2 = request.args['b']
+    parametro3 = request.args['c']
+
+    p = subprocess.Popen('"C:\Proyecto\HeatMap UNLa\HeatMap_UNLa_Abremate_v2.2_con_parametros.py" ' +
+           parametro1 + ' ' + parametro2 + ' ' + parametro3, shell=True,
+           stdin=None, stdout=None, stderr=None, close_fds=True)
+    #subprocess.run('echo %pythonPATH%', shell=True)
     pid = p.pid
     print( p.pid)
     return {'proceso': pid}
@@ -58,16 +64,23 @@ def resetPorcentaje():
     
     return {'porcentaje': json_object["porcentaje"] }
 
+#para invocar usar http://localhost:5000/stopHeatMap?pidToKill=15140
 @app.route('/stopHeatMap')
 def stopHeatMap():
-    json_object = {}     
-    print(pidProcess)
-    return {'status': json_object["200"] }
+    pidToKill = request.args['pidToKill']
+    print(pidToKill)
+    subprocess.call(['taskkill', '/F', '/T', '/PID',  str(pidToKill)])
+    #NO status = os.kill(pidToKill, 9)
+    return {'status': "baja"}
 
 @app.route('/runHeatMapWithParameters')
 def runHeatMapWithParameters():
-    json_object = {}     
-    return {'status': json_object["200"] }
+    p = subprocess.Popen('"C:\Proyecto\HeatMap UNLa\HeatMap_UNLa_Abremate_v2.2_sin_parametros.py" parametro',shell=True,
+           stdin=None, stdout=None, stderr=None, close_fds=True)
+    #subprocess.run('echo %pythonPATH%', shell=True)
+    pid = p.pid
+    print( p.pid)
+    return {'proceso': pid}
     
 @app.route('/showHeatMap')
 def showHeatMap():
