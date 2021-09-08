@@ -7,4 +7,11 @@ Para introducir cambios, crear una rama a partir de master, con el nombre de los
 
 Nico:
 
+Borrar carpetas en api -> __pycache__, Include, Lib, Scripts
+Ejecutar dentro de api: 
+$ python -m venv venv
+$ venv\Scripts\activate
+Finalmente
+(venv) $ pip install flask python-dotenv
+
 Para correr el server flask ejecutar y el front end ejecutar dos consolas, en una correr "npm run start" y en la otra "npm run start-api"
