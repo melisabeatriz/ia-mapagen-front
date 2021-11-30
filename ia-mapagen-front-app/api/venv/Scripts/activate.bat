@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\usuario\Documents\GitHub\proyectoabremate\ia-mapagen-front\ia-mapagen-front-app\api\venv
+set VIRTUAL_ENV=C:\Proyecto\web\frontend\ia-mapagen-front\ia-mapagen-front-app\api\venv
 
 if not defined PROMPT set PROMPT=$P$G
 

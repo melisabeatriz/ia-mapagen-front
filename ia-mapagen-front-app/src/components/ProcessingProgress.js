@@ -17,10 +17,6 @@ const ProcessingProgress = ({ isOpen, close }) => {
         <div>
           <ProcessingVideo  />
         </div>
-
-        <Button variant="outlined" onClick={close}>
-          Detener
-        </Button>
       </Paper>
     </Backdrop>
   );

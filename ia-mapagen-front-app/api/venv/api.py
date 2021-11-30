@@ -15,19 +15,22 @@ app = Flask(__name__)
 @app.route('/actualizarPorcentaje')
 def actualizarPorcentaje():
     json_object = {}
-    file = open("../salidaPython.json", "r+")
-    json_object = json.load(file)
-    print(json_object["porcentaje"])
-
-    json_object["archivosRestantes"] = json_object["archivosRestantes"] - 1
-    json_object["porcentaje"] = json_object["porcentaje"] + 1
+    #file = open("../salidaPython.json", "r+")
+    file = open("C:/Proyecto/web/frontend/ia-mapagen-front/ia-mapagen-front-app/api/venv/Scripts/salidaPython.txt", "r")
+    #json_object = json.load(file)
+    #print(json_object["porcentaje"])
+    lectura = file.read()
+    print("leo" + lectura)
+    #json_object["archivosRestantes"] = json_object["archivosRestantes"] - 1
+    #json_object["porcentaje"] = json_object["porcentaje"] + 1
     file.close()
 
-    file = open("../salidaPython.json", "w")
-    json.dump(json_object, file)
-    file.close()
+    #file = open("../salidaPython.json", "w")
+    #json.dump(json_object, file)
+    #file.close()
     
-    return {'porcentaje': json_object["porcentaje"] }
+    #return {'porcentaje': json_object["porcentaje"] }
+    return {'porcentaje': lectura  }
 
 #Generador de mapa de calor
 
@@ -48,7 +51,8 @@ def runHeatMap():
         squaresQuantity = request.args['squaresQuantity']
         radiusH = request.args['radiusH']
         pathHeatMapGenerate = request.args['pathHeatMapGenerate']
-
+        print("parametros: " + pathCSVFile + " + " + pathVideoToAnalizer + " + " + squaresQuantity + " + " + + " + " + pathHeatMapGenerate  )
+        input()         
         p = subprocess.Popen('"C:\Proyecto\HeatMap UNLa\HeatMap_UNLa_Abremate_v2.2_con_parametros.py" ' +
             pathCSVFile + ' ' + pathVideoToAnalizer + ' ' + squaresQuantity + ' ' + radiusH
                 + ' ' + pathHeatMapGenerate, shell=True, stdin=None, stdout=None, stderr=None, close_fds=True)
@@ -56,22 +60,24 @@ def runHeatMap():
         pid = p.pid
         print(p.pid)
     except:
-        proceso = -1
+        pid = -1
 
     return {'proceso': pid}
 
 @app.route('/resetPorcentaje')
 def resetPorcentaje():
-    json_object = {}
-    
-    json_object["archivosRestantes"] = 100
-    json_object["porcentaje"] = 0
-    
-    file = open("../salidaPython.json", "w")
-    json.dump(json_object, file)
+    file = open("C:/Proyecto/web/frontend/ia-mapagen-front/ia-mapagen-front-app/api/venv/Scripts/salidaPython.txt", "w")    
     file.close()
+    return {'porcentaje': 0  }
+
+@app.route('/finalizarActualizarPorcentaje')
+def finalizarActualizarPorcentaje():
+    file = open("C:/Proyecto/web/frontend/ia-mapagen-front/ia-mapagen-front-app/api/venv/Scripts/salidaPython.txt", "w")    
+    file.write(str(100))
+    file.close()
+    return {'porcentaje': 100  }
     
-    return {'porcentaje': json_object["porcentaje"] }
+
 
 #para invocar usar http://localhost:5000/stopHeatMap?pidToKill=15140
 @app.route('/stopHeatMap')
