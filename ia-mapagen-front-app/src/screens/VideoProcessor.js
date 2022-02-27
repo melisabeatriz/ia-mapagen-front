@@ -58,7 +58,9 @@ const VideoProcessor = () => {
       <ProcessingProgress
         isOpen={processInProgress}
         close={() => setProcessInProgress(false)}
-      />
+        estado={FileUploader.setVideoFile}
+        />
+        {console.log("video ->" + setVideoFile.)}
     </div>
   );
 };
