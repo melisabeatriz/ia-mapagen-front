@@ -11,7 +11,7 @@ const FileUploader = ({ legend, uploadFile }) => {
     });
 
   if (!isEmpty(filesContent)) {
-    uploadFile(filesContent[0].content);
+    uploadFile(filesContent[0].name);
   }
   return (
     <>
@@ -42,7 +42,8 @@ const FileUploader = ({ legend, uploadFile }) => {
             </>
           )}
         </Grid>
-      </fieldset>
+      </fieldset>     
+
     </>
   );
 };

@@ -70,6 +70,8 @@ const HeatMapProcessor = () => {
       <ProcessingProgress
         isOpen={processInProgress}
         close={() => setProcessInProgress(false)}
+        estado={heatMapProcessorSettings}
+        heatMap={true}
       />
     </div>
   );

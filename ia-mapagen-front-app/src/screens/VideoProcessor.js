@@ -29,7 +29,7 @@ const VideoProcessor = () => {
     <div className="video-processor-container">
       <h1>IA MapaGen - Procesador de video</h1>
       <FileUploader legend="Video a analizar" uploadFile={setVideoFile} />
-      <FileUploader legend="Red neuronal" uploadFile={setNeuralMap} />
+      <FileUploader legend="Red neuronal" uploadFile={setNeuralMap}  />
       <FileUploader legend="Archivo de clases" uploadFile={setClassFile} />
       <SliderSelector
         label="Porcentaje de coincidencia para detecciones"
@@ -58,9 +58,9 @@ const VideoProcessor = () => {
       <ProcessingProgress
         isOpen={processInProgress}
         close={() => setProcessInProgress(false)}
-        estado={FileUploader.setVideoFile}
+        estado={videoProcessorSettings}
+        heatMap={false}
         />
-        {console.log("video ->" + setVideoFile.)}
     </div>
   );
 };

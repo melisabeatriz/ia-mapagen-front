@@ -3,20 +3,21 @@ import { Backdrop, LinearProgress, Paper, Button } from "@material-ui/core";
 //import ProgressBar from "../components/ProgressBar";
 import ProcessingVideo from "../processingVideo"
 
-const ProcessingProgress = ({ isOpen, close }) => {
+const ProcessingProgress = ({ isOpen, close, estado, heatMap }) => {
   return (
     <Backdrop className="backdrop" open={isOpen}>
       <Paper className="backdrop-card" elevation={3}>
-        <h3>Procesamiento en proceso</h3>
-        <LinearProgress variant="determinate" value={10} />
-        <div className="progress-info">
-          <p>Tiempo transcurrido: 00:10:05</p>
-          <p>Tiempo restante aproximado: 04:20</p>
-        </div>
-
+        <h3>Iniciar procesamiento</h3>
         <div>
-          <ProcessingVideo  />
+          {console.log("parametros á procesar", estado)}
+          <ProcessingVideo parametros={estado} heatMap={heatMap}/>
         </div>
+        <div>
+        <p></p>
+        </div>
+        <Button variant="outlined" onClick={close}>
+          Cerrar  
+        </Button>
       </Paper>
     </Backdrop>
   );

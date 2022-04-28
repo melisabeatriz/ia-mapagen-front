@@ -10,7 +10,7 @@ function ProgressBar(props) {
             <div className="progress">
                 <div className="progress-bar progress-bar-striped progress-bar-animated"
                 role="progressbar"
-                style={{width: props.porcentaje ? props.porcentaje +"%": "100%"}}>
+                style={{backgroundColor: props.cancelado ? props.cancelado : props.cancelado, width: props.porcentaje ? props.porcentaje +"%": "100%"}}>
                 {`${props.porcentaje}%`}    
                 </div>
             </div>
@@ -20,3 +20,4 @@ function ProgressBar(props) {
 }
 
 export default ProgressBar;
+
