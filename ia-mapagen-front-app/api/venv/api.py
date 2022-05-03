@@ -139,7 +139,7 @@ def runVideoProcessor():
         minPercentage = request.args['minPercentage']        
         numberOfFrames = request.args['numberOfFrames']       
         #parametros sin ingreso por pantalla
-        pathVideoOutput = 'E:\Outputs\ABREMATE_PRUEBA\videoSalida.avi'
+        pathVideoOutput = 'E:\Outputs\ABREMATE_PRUEBA\Salida.avi'
         pathCSVOutput = 'E:\Outputs\ABREMATE_PRUEBA\output_csv.csv'
         
         print("Comienzo ejecucion de "+ "C:\Proyecto\HeatMap UNLa\HeatMap_UNLa_Abremate_v3.3.py "  + pathVideoToAnalizer + " TRUE " + pathVideoOutput 
