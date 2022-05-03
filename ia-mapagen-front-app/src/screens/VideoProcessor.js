@@ -10,6 +10,8 @@ const VideoProcessor = () => {
   const [videoFile, setVideoFile] = useState("");
   const [neuralMap, setNeuralMap] = useState("");
   const [classFile, setClassFile] = useState("");
+  const [outputDirectory, setOutputDirectory] = useState("");
+  const [generateHeatMap, setGenerateHeatMap] = useState("NO");
   const [processInProgress, setProcessInProgress] = useState(false);
 
   const videoProcessorSettings = {
@@ -18,6 +20,8 @@ const VideoProcessor = () => {
     videoFile,
     neuralMap,
     classFile,
+    outputDirectory,
+    generateHeatMap,
   };
 
   const onStartClick = () => {
@@ -31,6 +35,7 @@ const VideoProcessor = () => {
       <FileUploader legend="Video a analizar" uploadFile={setVideoFile} />
       <FileUploader legend="Red neuronal" uploadFile={setNeuralMap}  />
       <FileUploader legend="Archivo de clases" uploadFile={setClassFile} />
+      <FileUploader legend="Directorio de Output" uploadFile={setOutputDirectory} />
       <SliderSelector
         label="Porcentaje de coincidencia para detecciones"
         explanation="Se recomienda ingresar un valor bajo para que se detecte a todas las personas de la imagen, por más que tenga una baja probabilidad de ser una persona."

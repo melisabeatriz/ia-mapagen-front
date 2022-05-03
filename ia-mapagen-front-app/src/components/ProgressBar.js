@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function ProgressBar(props) {
     return (
         <div className="contenedorProgressBar">
-            <span className="progressText">{props.texto ? props.texto : "Procesando Archivo(s)"}</span>        
+            <span className="progressText">{props.estado ? props.estado : "..."}</span>        
             <div className="progress">
                 <div className="progress-bar progress-bar-striped progress-bar-animated"
                 role="progressbar"
@@ -14,7 +14,8 @@ function ProgressBar(props) {
                 {`${props.porcentaje}%`}    
                 </div>
             </div>
-            
+             <span className="progressText"> &nbsp; Transcurrido: {props.transcurrido ? props.transcurrido : " - "}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span> 
+             <span className="progressText"> &nbsp; Restante: {props.restante ? props.restante : " - "}  </span> 
         </div>
     );
 }

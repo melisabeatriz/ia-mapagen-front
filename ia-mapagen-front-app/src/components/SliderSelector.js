@@ -36,6 +36,7 @@ const SliderSelector = ({
           min={values.min}
           max={values.max}
           onChange={handleChange}
+          valueLabelDisplay="on"
           aria-labelledby="continuous-slider"
         />
         <p>{`${values.max}${isPercentage ? "%" : ""}`}</p>

@@ -43,6 +43,7 @@
 
 /* Slider component */
 .slider-container {
+	padding-top: 40px;
   display: flex;
   align-items: center;
 }
@@ -57,6 +58,8 @@
 
 /* Video processor */
 .video-processor-container {
+	margin-top: 20px;
+	margin-bottom: 50px;
   width: 50%;
 }
 

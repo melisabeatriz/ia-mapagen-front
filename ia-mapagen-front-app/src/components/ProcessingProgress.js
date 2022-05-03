@@ -7,8 +7,8 @@ const ProcessingProgress = ({ isOpen, close, estado, heatMap }) => {
   return (
     <Backdrop className="backdrop" open={isOpen}>
       <Paper className="backdrop-card" elevation={3}>
-        <h3>Iniciar procesamiento</h3>
-        <div>
+        <h3>Procesamiento del video</h3>
+        <div style={{width: "100%"}}>
           {console.log("parametros á procesar", estado)}
           <ProcessingVideo parametros={estado} heatMap={heatMap}/>
         </div>
