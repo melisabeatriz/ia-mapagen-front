@@ -11,6 +11,12 @@ import platform
 global currentProcess
 
 app = Flask(__name__)
+
+#Para que muestre menos logs
+#import logging
+#log = logging.getLogger('werkzeug')
+#log.setLevel(logging.ERROR)
+
 @app.route('/actualizarPorcentaje')
 def actualizarPorcentaje():
 
@@ -155,18 +161,22 @@ def runVideoProcessor():
         #pathVideoOutput = request.args['pathVideoOutput']  # llega algo por paramatro?
         pathNeural = 'C:\\IA_MapaGen\\Input\\' + request.args['pathNeural'].replace('"', '').replace("'", '')
         pathClassFile = 'C:\\IA_MapaGen\\Input\\' + request.args['pathClassFile'].replace('"', '').replace("'", '')
-        minPercentage = request.args['minPercentage']        
-        numberOfFrames = request.args['numberOfFrames']       
+        minPercentage = request.args['minPercentage'].replace('"', '').replace("'", '')
+        minPercentage = str(int(minPercentage) / 100);
+        
+        numberOfFrames = request.args['numberOfFrames'].replace('"', '').replace("'", '')      
         #parametros sin ingreso por pantalla
         pathVideoOutput = 'C:\\IA_MapaGen\\Output\\VideoSalida.avi'
         pathCSVOutput = 'C:\\IA_MapaGen\\Output\\OutputCsv.csv'
         
-        print("Comienzo ejecucion de "+ "C:\\IA_MapaGen\\Proceso\\IA_MapaGen_Proceso.exe "  + pathVideoToAnalizer + " TRUE " + pathVideoOutput 
-              + " " + pathCSVOutput  + " " +  pathNeural  + " " + pathClassFile + " " + minPercentage+ " " + numberOfFrames + ' False False 213 179 "C:/IA_MapaGen/Output"')
+        print("Comienzo ejecucion de "+ "C:\\IA_MapaGen\\Proceso\\IA_MapaGen_Proceso.py "  + pathVideoToAnalizer + " TRUE " + pathVideoOutput 
+              + " " + pathCSVOutput  + " " +  pathNeural  + " " + pathClassFile + " " + minPercentage+ " " + numberOfFrames + ' False True 213 179 "C:/IA_MapaGen/Output"')
 
-        command = ["C:\\IA_MapaGen\\Proceso\\IA_MapaGen_Proceso.exe", pathVideoToAnalizer, "True", pathVideoOutput, pathCSVOutput, pathNeural, pathClassFile, "0.01","10", "False", "False", "213", "179","C:\\IA_MapaGen\\Output" ]
+        command = ["C:\\IA_MapaGen\\Proceso\\IA_MapaGen_Proceso.py", pathVideoToAnalizer, "True", pathVideoOutput, pathCSVOutput, pathNeural, pathClassFile, minPercentage, numberOfFrames, "False", "True", "213", "179","C:\\IA_MapaGen\\Output" ]
 
-        p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+        p = subprocess.Popen(command, shell=True) #stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+
+        print("Iniciada la ejecucion")
 
         pid = p.pid
         print("PID --->>>>" + str(p.pid))

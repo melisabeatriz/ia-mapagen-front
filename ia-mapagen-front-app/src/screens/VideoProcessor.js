@@ -5,7 +5,7 @@ import SliderSelector from "../components/SliderSelector";
 import ProcessingProgress from "../components/ProcessingProgress";
 
 const VideoProcessor = () => {
-  const [personMatch, setPersonMatch] = useState(1);
+  const [personMatch, setPersonMatch] = useState(0.01);
   const [skippedFrames, setSkippedFrames] = useState(10);
   const [videoFile, setVideoFile] = useState("");
   const [neuralMap, setNeuralMap] = useState("");
@@ -52,7 +52,7 @@ const VideoProcessor = () => {
         explanation="Se saltearán varios frames para acelerar el procesamiento del video. A mayor número, procesamiento más rápido."
         values={{
           min: 1,
-          max: 24,
+          max: 100,
           default: skippedFrames,
           setter: setSkippedFrames,
         }}
